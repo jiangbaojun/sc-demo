@@ -1,3 +1,5 @@
+server:
+  port: 3351
 spring:
   profile: develop
   datasource:
@@ -7,6 +9,8 @@ spring:
     username: root
     password: 12345678
 ---
+server:
+  port: 3352
 spring:
   profile: test
   datasource:
@@ -16,6 +20,8 @@ spring:
     username: root
     password: 12345678
 ---
+server:
+  port: 3353
 spring:
   profile: production
   datasource:
