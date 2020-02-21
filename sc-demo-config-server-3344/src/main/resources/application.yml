@@ -1,0 +1,11 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: sc-demo-config-server
+  #config-server配置
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jiangbaojun/sc-demo.git
