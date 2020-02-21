@@ -1,0 +1,12 @@
+spring:
+  profiles: develop
+  name: xiaoming
+
+spring:
+  profiles: production
+  name: xiaoming
+
+spring:
+  profiles: test
+  name: xiaoming
+
