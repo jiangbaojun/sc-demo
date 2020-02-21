@@ -1,7 +1,7 @@
 server:
   port: 3351
 spring:
-  profile: develop
+  profiles: develop
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -12,7 +12,7 @@ spring:
 server:
   port: 3352
 spring:
-  profile: test
+  profiles: test
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -23,7 +23,7 @@ spring:
 server:
   port: 3353
 spring:
-  profile: production
+  profiles: production
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
