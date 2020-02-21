@@ -1,0 +1,14 @@
+# Project exclude paths
+/sc-demo-api/target/
+/sc-demo-config-server-3344/target/
+/sc-demo-consumer-81/target/
+/sc-demo-consumer-feign-81/target/
+/sc-demo-eureka-7001/target/
+/sc-demo-eureka-7002/target/
+/sc-demo-eureka-7003/target/
+/sc-demo-hystrix-dashboard-9001/target/
+/sc-demo-provider-8081/target/
+/sc-demo-provider-8082/target/
+/sc-demo-provider-8083/target/
+/sc-demo-provider-hystrix-8081/target/
+/sc-demo-zuul-80/target/
