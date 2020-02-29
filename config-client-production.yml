@@ -1,0 +1,11 @@
+server:
+  port: 3356
+spring:
+  profiles: production
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.12.12.12:3306/db1?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 12345678
+
