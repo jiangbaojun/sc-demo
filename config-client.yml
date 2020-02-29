@@ -1,6 +1,7 @@
 spring:
   profiles:
     active: test
+# 三个横岗，文件分隔符，代表config-client-develop.yml、config-client-production.yml等，如果有直接的相同文件，优先使用那个文件，此处失效
 ---
 server:
   port: 3351

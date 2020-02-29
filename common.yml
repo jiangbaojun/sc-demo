@@ -1,12 +1,12 @@
 spring:
   profiles: develop
-  name: xiaoming
+  name: xiaoming1
 ---
 spring:
   profiles: production
-  name: xiaoming
+  name: xiaoming2
 ---
 spring:
   profiles: test
-  name: xiaoming
+  name: xiaoming3
 
