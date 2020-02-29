@@ -1,5 +1,5 @@
 server:
-  port: 3359
+  port: 3356
 spring:
   profiles: production
   datasource:
