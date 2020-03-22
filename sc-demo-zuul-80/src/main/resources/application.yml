@@ -14,10 +14,22 @@ eureka:
 
 # zuulpe配置
 zuul:
+  ignored-services: "*"         #忽略指定服务使用服务名作为路径访问，多个实用逗号隔开，*代表忽略所有服务。本来将不能使用http://127.0.0.1/sc-demo-provider-dept/provider/dept/get/4访问
+#  ignored-patterns: /sc-*/**      #使用路径匹配进行忽略
   routes:
-    mydept.serviceId: sc-demo-provider-dept
-    mydept.path: /mydept/**     #如果不指定路由，通过服务名称访问，例如http://127.0.0.1/sc-demo-provider-dept/provider/dept/get/4。如果指定了路由，使用指定路径访问，例如：http://127.0.0.1/mydept/provider/dept/get/4
-  ignored-services: "*"         #忽略指定服务使用服务名作为路径访问，*代表忽略所有服务。本来将不能使用http://127.0.0.1/sc-demo-provider-dept/provider/dept/get/4访问
+    service1: #代表一个服务，名称随意
+      serviceId: sc-demo-provider-dept
+      path: /mydept/**     #如果不指定路由，通过服务名称访问，例如http://127.0.0.1/sc-demo-provider-dept/provider/dept/get/4。如果指定了路由，使用指定路径访问，例如：http://127.0.0.1/mydept/provider/dept/get/4
+#    service2: #如果还有其他服务
+#      serviceId: user
+#      path: /myUser/**
+
+# zuul.routes也可以这样配置
+#   zuul:
+#    routes:
+#     sc-demo-provider-dept: /mydept/**   #格式 serviceid:自定义网关路径
+#     sc-demo-provider-user: /myuser/**
+#
 
 # actuator info信息配置
 info:

@@ -22,7 +22,7 @@ public class DeptController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String URL_PREDIX = "HTTP://127.0.0.1:8081/provider/dept";
+    private final String URL_PREDIX = "http://127.0.0.1:8081/provider/dept";
 
     @RequestMapping("/add")
     public boolean addDept(){

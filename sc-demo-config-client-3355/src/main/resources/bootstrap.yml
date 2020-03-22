@@ -1,0 +1,29 @@
+### 配置方式一，没有将config-server注册进eureka，使用uri指定
+#spring:
+#  cloud:
+#    config:
+#      name: config-client # {name}-{profile}对应git上的配置文件名称，默认使用当前应用名称${spring.application.name}
+#      profile: production  #配置文件profiles，默认${spring.profiles.active} (actually Environment.getActiveProfiles())
+#      label: master #git分支名称，默认master
+#      uri: http://127.0.0.1:3344 #config-server服务地址
+
+### 配置方式二，config-server注册进eureka
+spring:
+  cloud:
+    config:
+#      name: config-client #{name}-{profile}对应git上的配置文件名称.例如本例，在git上应该有文件config-client-production.yml文件。name默认使用当前应用名称${spring.application.name}，如果该name不配置，在git上应该有文件sc-demo-config-client-production.yml文件
+      name: config-client,common # 可以配置多个name，逗号分隔。本例加载：config-client-production.yml和common-production.yml文件
+      profile: production  #配置文件profiles，默认${spring.profiles.active} (actually Environment.getActiveProfiles())
+      label: master #git分支名称，默认master
+      discovery:
+        enabled: true
+        service-id: sc-demo-config-server
+
+#eureka配置。注意eureka的配置，应该放在bootstrap.yml文件中，确保在识别配置服务端应用（sc-demo-config-server）时不报错
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+    register-with-eureka: true
+  instance:
+    instance-id: sc-demo-config-client-3355

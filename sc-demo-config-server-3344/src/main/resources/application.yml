@@ -1,5 +1,15 @@
 server:
   port: 3344
+
+#eureka配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+    register-with-eureka: true
+  instance:
+    instance-id: sc-demo-config-server-3344
+
 spring:
   application:
     name: sc-demo-config-server
@@ -9,3 +19,6 @@ spring:
       server:
         git:
           uri: https://github.com/jiangbaojun/sc-demo.git
+#          uri: /Users/jiangbaojun/myProject/ideaProject/sc-demo/.git
+
+

@@ -21,8 +21,9 @@ public class FeignDeptServiceFallbakFactory implements FallbackFactory {
      * @Author jiangbaojun
      * @Date 2020/2/20 13:32
      */
-    public FeignDeptService create(Throwable throwable) {
+    public FeignDeptService create(final Throwable throwable) {
         return new FeignDeptService() {
+            private Throwable e = throwable;
             public boolean addDept(Dept dept) {
                 return false;
             }
@@ -35,7 +36,7 @@ public class FeignDeptServiceFallbakFactory implements FallbackFactory {
              */
             public Dept queryById(Long id) {
                 return new Dept()
-                        .setDname("id:"+id+",不存在该信息，service fallback")
+                        .setDname("id:"+id+",不存在该信息，service fallback:"+e.getMessage())
                         .setDb_source("no database on mysql");
             }
 

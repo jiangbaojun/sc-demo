@@ -18,6 +18,14 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/db1?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root
     password: 12345678
+  #zipkin服务所在地址
+  zipkin:
+    base-url: http://localhost:9411/
+  #配置采样百分比,开发环境可以设置为1，表示全部，生产用默认0.1即可
+  sleuth:
+    sampler:
+      probability: 1
+
 
 # eureka配置
 eureka:
@@ -29,6 +37,22 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
   instance:
     instance-id: sc-demo-provider-hystrix-dept8081 #eureka客户端示例id，对应监控页面status的显示值
+
+# hystrix设置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #服务熔断超时设置，如果超过该时间，将执行fallbackMethod指定的熔断方法
+
+# 配置actuator的web访问项
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 # actuator info信息配置
 info:

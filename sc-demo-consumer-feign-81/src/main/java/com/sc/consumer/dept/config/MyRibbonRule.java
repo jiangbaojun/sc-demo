@@ -1,4 +1,4 @@
-package com.sc.consumer.myrule;
+package com.sc.consumer.dept.config;
 
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
@@ -17,6 +17,9 @@ public class MyRibbonRule extends AbstractLoadBalancerRule {
     int current = 0;
     int index = 0;
 
+    /**
+     * Randomly choose from all living servers
+     */
     public Server choose(ILoadBalancer lb, Object key) {
         if (lb == null) {
             return null;

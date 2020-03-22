@@ -23,7 +23,7 @@ public class DeptRibbonController {
     private RestTemplate restTemplate;
 
     //使用服务提供者的应用名称作为地址（yml文件中的spring.application.name）
-    private final String URL_PREDIX = "HTTP://sc-demo-provider-dept/provider/dept";
+    private final String URL_PREDIX = "http://sc-demo-provider-dept/provider/dept";
 
     @RequestMapping("/add")
     public boolean addDept(){

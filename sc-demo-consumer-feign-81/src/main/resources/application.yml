@@ -2,14 +2,33 @@
 server:
   port: 81
 
+spring:
+  application:
+    name: sc-demo-consumer-feign
 #eureka配置
 eureka:
   client:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
-    register-with-eureka: false
+    register-with-eureka: true
+  instance:
+    instance-id: sc-demo-consumer-feign-81
 
-#hystrix配置
+#feign配置
 feign:
   hystrix:
     enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000  #feign建立连接用时，如果超过了该时间，超时，失败或服务降级处理
+        readTimeout: 5000 #在client端，feign获取数据用时，如果超过了该时间，超时，失败或服务降级处理。注意，如果服务提供端有熔断配置，配合hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds使用
+
+# hystrix配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000 #服务熔断超时设置，如果超过该时间，将执行fallbackMethod指定的熔断方法

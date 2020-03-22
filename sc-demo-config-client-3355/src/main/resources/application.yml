@@ -1,0 +1,18 @@
+server:
+  port: 3355  #会优先使用bootstrap.yml引用的git上的配置
+spring:
+  application:
+    name: sc-demo-config-client
+  #rabbitmq配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+# 配置actuator的web访问项
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
