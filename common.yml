@@ -4,7 +4,7 @@ spring:
 ---
 spring:
   profiles: production
-  name: xiaoming211
+  name: xiaoming2
 ---
 spring:
   profiles: test
