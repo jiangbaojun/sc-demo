@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfig {
 
     /**
-     * 在yml中配置即可，不推荐在这添加servlet
+     * 在yml中配置开启即可，不推荐在这添加servlet
      */
 //    @Bean
 //    public ServletRegistrationBean getHystrixMetricsStreamServlet(){

@@ -3,21 +3,24 @@ package com.sc.zuul.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.zuul.filters.Route;
+import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 模拟一个登录过滤器
- * 查看jwt 和 acl访问控制列表
+ * 获取路由信息
  * @Author: jiangbaojun
  * @Date: 2020/2/27 10:57
  */
 @Component
-public class LoginFilter extends ZuulFilter {
+public class PathFilter extends ZuulFilter {
+
+    @Autowired
+    private RouteLocator routeLocator;
 
     /**
      * 类型 pre
@@ -31,10 +34,10 @@ public class LoginFilter extends ZuulFilter {
     }
 
     /**
-     * 执行顺数,数字小先执行
+     * 执行顺数
      */
     public int filterOrder() {
-        return FilterConstants.PRE_DECORATION_FILTER_ORDER - 1;
+        return FilterConstants.PRE_DECORATION_FILTER_ORDER-2;
     }
 
     /**
@@ -42,15 +45,7 @@ public class LoginFilter extends ZuulFilter {
      * @return
      */
     public boolean shouldFilter() {
-        RequestContext context = RequestContext.getCurrentContext();
-        HttpServletRequest request = context.getRequest();
-
-        String uri = request.getRequestURI();
-        //可以根据url判断是否要开启
-        if("/mydept/provider/dept/get/1".equals(uri)){
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**
@@ -61,14 +56,19 @@ public class LoginFilter extends ZuulFilter {
     public Object run() throws ZuulException {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
-        //判断head中token是否存在
-        String token = request.getHeader("token");
-        if(StringUtils.isBlank(token)){
-            context.setSendZuulResponse(false);
-            context.setResponseStatusCode(HttpStatus.FORBIDDEN.value());
-            context.setResponseBody("身份验证失败");
-            context.getResponse().setContentType("text/html;charset=UTF-8");
-        }
+
+        String requestURI = request.getRequestURI();
+        //route中含有本次路由跳转的信息
+        Route route = routeLocator.getMatchingRoute(requestURI);
+        String scheme = request.getScheme();
+        String serverName = request.getServerName();
+        int port = request.getServerPort();
+        String basePath = scheme + "://" + serverName + ":" + port + route.getPrefix();
+        String rootPath = scheme + "://" + serverName + ":" + port + request.getContextPath();
+        //目标微服务的根据路径
+        request.setAttribute("basePath", basePath);
+        //当前网关的根路径
+        request.setAttribute("rootPath", rootPath);
         return null;
     }
 }

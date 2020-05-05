@@ -23,7 +23,7 @@ public interface FeignDeptService {
     public boolean addDept(Dept dept);
 
     @GetMapping("/provider/dept/get/{id}")
-    public Dept queryById(@PathVariable("id") Long id);
+    public Dept queryById1(@PathVariable("id") Long id);
 
     @GetMapping("/provider/dept/all")
     public List<Dept> queryAll();

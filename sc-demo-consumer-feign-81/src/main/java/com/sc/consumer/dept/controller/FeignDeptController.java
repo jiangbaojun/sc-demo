@@ -39,7 +39,7 @@ public class FeignDeptController {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        return service.queryById(id);
+        return service.queryById1(id);
     }
 
     @RequestMapping("/all")

@@ -34,7 +34,7 @@ public class FeignDeptServiceFallbakFactory implements FallbackFactory {
              * @Author jiangbaojun
              * @Date 2020/2/20 13:35
              */
-            public Dept queryById(Long id) {
+            public Dept queryById1(Long id) {
                 return new Dept()
                         .setDname("id:"+id+",不存在该信息，service fallback:"+e.getMessage())
                         .setDb_source("no database on mysql");

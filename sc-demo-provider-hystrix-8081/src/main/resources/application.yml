@@ -25,6 +25,20 @@ spring:
   sleuth:
     sampler:
       probability: 1
+  # 模板配置
+  thymeleaf:
+    # 是否为Web框架启用Thymeleaf视图分辨率。
+    enabled: true
+    # 是否启用模板缓存。
+    cache: false
+    # 编码格式, 默认UTF-8
+    encoding: UTF-8
+    # 应用于模板的模板模式。另请参阅Thymeleaf的TemplateMode枚举。
+    mode: HTML
+    # 后缀 默认 .html
+    suffix: .html
+    # 模板文件存放位置  , 默认 classpath:/templates/
+    prefix: classpath:/templates/
 
 
 # eureka配置

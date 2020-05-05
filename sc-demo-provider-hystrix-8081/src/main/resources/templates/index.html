@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>index</title>
+    <script id="t1" type="application/javascript" th:src="@{index.js}"></script>
+    <script id="t2" type="application/javascript" src="index.js"></script>
+    <script id="t3" type="application/javascript" src="index.js" th:src="@{index.js}"></script>
+</head>
+<body>
+
+    <div class="content" th:text="${content}"></div>
+    <span th:text="${paramName}"></span>
+
+    <button onclick="test()"></button>
+
+</body>
+</html>
