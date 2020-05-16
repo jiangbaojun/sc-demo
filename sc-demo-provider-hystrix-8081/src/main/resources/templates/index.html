@@ -6,11 +6,26 @@
     <script id="t1" type="application/javascript" th:src="@{index.js}"></script>
     <script id="t2" type="application/javascript" src="index.js"></script>
     <script id="t3" type="application/javascript" src="index.js" th:src="@{index.js}"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var max = /*[[${content}]]*/ 20;
+        alert(max);
+        /*]]>*/
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var max = [[${content}]];
+        alert(max);
+        /*]]>*/
+    </script>
 </head>
 <body>
 
     <div class="content" th:text="${content}"></div>
     <span th:text="${paramName}"></span>
+
+    <button class="btn" th:onclick="alert([[${content}]]);">获得内容</button>
 
     <button onclick="test()"></button>
 

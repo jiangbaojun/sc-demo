@@ -7,8 +7,8 @@ server:
   port: 3351
 spring:
   profiles: develop
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
+  datasource:KeyResolver
+  type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.1.10:3306/db1?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root

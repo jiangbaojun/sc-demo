@@ -1,6 +1,8 @@
 package com.sc.provider.dept.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
 /**
  * 添加hystrix.stream监控
@@ -19,4 +21,9 @@ public class ApplicationConfig {
 //        servletBean.addUrlMappings("/actuator/hystrix.stream");
 //        return servletBean;
 //    }
+    public void addInterceptors(InterceptorRegistry registry) {
+        //添加拦截器
+        InterceptorRegistration interceptor1 = registry.addInterceptor(new MyInterceptor());
+        interceptor1.addPathPatterns("/**");
+    }
 }

@@ -1,0 +1,31 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: sc-demo-gateway-80
+spring:
+  application:
+    name: sc-demo-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: dept-route
+        uri: lb://sc-demo-provider-dept
+        predicates:
+          - Path=/mydept/**
+        filters:
+          - StripPrefix=1
+      - id: vst-demo
+        uri: http://140.100.130.98/vst-demo/
+        predicates:
+          - Path=/vst-demo/**
+
+info:
+  app:
+    name: 网关服务
+    author: jiangbaojun
+  company: vst

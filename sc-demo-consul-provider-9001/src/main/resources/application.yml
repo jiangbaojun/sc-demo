@@ -1,0 +1,15 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: sc-demo-consul
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8504
+      discovery:
+        service-name: ${spring.application.name}
+        instance-id: sc-demo-consul9001
+        prefer-agent-address: true
+        prefer-ip-address: true
