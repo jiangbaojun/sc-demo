@@ -1,0 +1,47 @@
+server:
+  port: 80
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: sc-demo-zuul-consul
+  webflux:
+    static-path-pattern: static/**
+  redis:
+    database: 2
+    jedis:
+      pool:
+        max-active: 1024
+        max-wait: 20000
+        max-idle: 200
+        min-idle: 10
+    sentinel:
+      master: mymaster
+      nodes: 140.100.130.106:26379,140.100.130.107:26380
+  cloud:
+    consul:
+      host: 140.100.130.107
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+        instance-id: '${spring.application.name}-${spring.cloud.consul.discovery.ip-address}-${server.port}'
+    inetutils:
+      ignored-interfaces: ['VMware.*','Hyper-V.*']
+zuul:
+  ignored-services: "*"         #忽略指定服务使用服务名作为路径访问，多个实用逗号隔开，*代表忽略所有服务。本来将不能使用http://127.0.0.1/sc-demo-provider-dept/provider/dept/get/4访问
+  #  ignored-patterns: /sc-*/**      #使用路径匹配进行忽略
+  routes:
+    service1: #代表一个服务，名称随意
+      serviceId: vst-ms-framework-ui-frame1
+      path: /ui/**
+      sensitiveHeaders: "*"
+    service2: #代表一个服务，名称随意
+      serviceId: vst-ms-framework-ums1
+      path: /ums/**
+      sensitiveHeaders: "*"
+
+#    vst-ms-framework-ui-frame1: /ui/**
+#    vst-ms-framework-ums: /ums/**
+#    vst-demo: /vst-demo/**

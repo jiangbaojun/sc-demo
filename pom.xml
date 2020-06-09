@@ -24,6 +24,7 @@
         <module>sc-demo-config-client-3355</module>
         <module>sc-demo-gateway-80</module>
         <module>sc-demo-consul-provider-9001</module>
+        <module>sc-demo-zuul-consul</module>
     </modules>
 
     <!--     父工程，pom打包 -->

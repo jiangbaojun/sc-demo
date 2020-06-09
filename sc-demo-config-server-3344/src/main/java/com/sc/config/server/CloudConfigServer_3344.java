@@ -14,6 +14,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 public class CloudConfigServer_3344 {
     public static void main(String[] args) {
-        SpringApplication.run(CloudConfigServer_3344.class, args)
-;    }
+        SpringApplication.run(CloudConfigServer_3344.class, args);
+    }
 }
