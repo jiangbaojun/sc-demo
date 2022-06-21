@@ -34,7 +34,7 @@
         <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
         <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
         <junit.version>4.13</junit.version>
-        <mysql.connector.version>8.0.19</mysql.connector.version>
+        <mysql.connector.version>8.0.28</mysql.connector.version>
         <mybatis.starter.version>2.1.1</mybatis.starter.version>
     </properties>
 
